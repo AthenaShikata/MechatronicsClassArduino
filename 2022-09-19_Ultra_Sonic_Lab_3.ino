@@ -5,11 +5,12 @@ const int led = 2;
 long duration;
 int distance;
 int count = 0;
+int detect = 0;
 
 void setup() {
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(led, OUTPUT);
   Serial.begin(9600); 
 }
 
@@ -23,9 +24,15 @@ void loop() {
   distance = duration * 0.034 / 2;
   Serial.print("Distance: ");
   Serial.println(distance);
-  if (distance < 20) {
-    count = count + 1;
-    delay (1000);
+  if (distance < 10) {
+    if (detect == 0){
+     detect = 1;
+     count++;
+    } 
+    } else if (distance >= 10) {
+      detect = 0;
   }
+  Serial.println ("Loop Complete");
+  Serial.print ("COUNT VALUE: ");
   Serial.println (count);
 }
