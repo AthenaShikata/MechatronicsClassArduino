@@ -2,9 +2,8 @@
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
-const int trigPin = 11;
-const int echoPin = 10;
-const int led = 2;
+const int trigPin = 8;
+const int echoPin = 9;
 
 long duration;
 int distance;
@@ -13,6 +12,10 @@ void setup() {
   lcd.begin(16, 2);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
+  lcd.setCursor(0, 0);
+  lcd.print ("Distance = ");
+  lcd.setCursor(0, 1);
+  lcd.print ("Time = ");
   Serial.begin(9600); 
 }
 
@@ -24,12 +27,11 @@ void loop() {
   digitalWrite(trigPin, LOW);
   duration = pulseIn(echoPin, HIGH);
   distance = duration * 0.034 / 2;
-  lcd.setCursor(0, 0);
-  lcd.print ("Distance = ");
+  Serial.println(distance);
+  lcd.setCursor(11, 0);
+  lcd.print("     ");
   lcd.setCursor(11, 0);
   lcd.print (distance);
-  lcd.setCursor(0, 1);
-  lcd.print ("Time = ");
   lcd.setCursor(7, 1);
   lcd.print (millis());
 }
