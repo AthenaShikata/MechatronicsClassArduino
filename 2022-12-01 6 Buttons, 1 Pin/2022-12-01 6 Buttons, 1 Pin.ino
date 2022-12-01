@@ -23,6 +23,7 @@ void setup() {
 
 void loop() {
   val = analogRead(buttons);
+  //convert val (the voltage) to resistance
   for (int i = 0; i < 6; i++) {
     int b = bitRead(calc, i);
     digitalWrite (-2*i+13, b);
