@@ -22,4 +22,3 @@ void loop() {
   Serial.println (angle);
   spinny.write (angle);
 }
-

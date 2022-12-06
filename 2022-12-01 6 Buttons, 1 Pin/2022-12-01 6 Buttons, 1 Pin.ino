@@ -7,6 +7,7 @@ const int led5 = 5;
 const int led6 = 3;
 
 int val = 0;
+int convert = 0;
 int calc = 0;
 String strn = "000000";
 
@@ -24,6 +25,8 @@ void setup() {
 void loop() {
   val = analogRead(buttons);
   //convert val (the voltage) to resistance
+  convert = (val*4.892);
+  calc = 
   for (int i = 0; i < 6; i++) {
     int b = bitRead(calc, i);
     digitalWrite (-2*i+13, b);
