@@ -6,9 +6,9 @@ Servo shrunk;
 
 const int sensor = 4;
 
-int angle = 90;
-int stare = 90;
-int time = 0;
+float angle = 90;
+float x = 0;
+int detect = 0;
 
 void setup() {
   Serial.begin (9600);
@@ -18,10 +18,18 @@ void setup() {
 }
 
 void loop() {
-  time = millis()/1000;
-  angle = 30((sin(.1*time))^2)+.5(cos(.5*time))^2)+70;
+  x = millis();
+  angle = (35*(sin(millis()/10000)) + 5*(cos(millis()/1000)) + 90);
   blood.write (angle);
   burnt.write (angle);
   shrunk.write (angle);
-  Serial.println(angle);
+  Serial.print(angle);
+  Serial.print("   ");
+  Serial.println (x);
+  if (detect == 1) {
+    blood.write (90);
+    burnt.write (90);
+    shrunk.write (90);
+    delay(10000);
+  }
 }
