@@ -6,6 +6,7 @@ Servo shrunk;
 
 const int sensor = 4;
 const int button = 5;
+const int led = 8;
 
 float angle1 = 80;
 float angle2 = 80;
@@ -24,6 +25,7 @@ void setup() {
   shrunk.attach(9);
   pinMode(sensor, INPUT);
   pinMode(button, INPUT_PULLUP);
+  pinMode(led, OUTPUT);
   randomSeed(analogRead(0));
 }
 
@@ -37,21 +39,15 @@ void loop() {
   blood.write(angle1);
   burnt.write(angle2);
   shrunk.write(angle3);
-  Serial.print(angle1);
-  Serial.print("   ");
-  Serial.println(millis());
   detect = digitalRead(sensor);
   if (detect == 1) {
     if (state == 0) {
       state = 1;
-      
-    }
-    blood.write(90);
+      blood.write(90);
       burnt.write(90);
       shrunk.write(90);
-      Serial.println("Motion Detected");
-      delay(3000);
-      Serial.println("Motion Over");
+      delay(5500);
+    }
   } else {
     if (state == 1) {
       state = 0;
