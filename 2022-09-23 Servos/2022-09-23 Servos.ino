@@ -9,7 +9,7 @@ Servo spinny;
 void setup() {
   Serial.begin (9600);
   pinMode (pot, INPUT);
-  spinny.attach (9); 
+  spinny.attach (2); 
   spinny.write (90);
   delay (1000);
 }

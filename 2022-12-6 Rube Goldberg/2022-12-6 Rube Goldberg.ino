@@ -16,9 +16,9 @@ void setup() {
 void loop() {
   val = analogRead (PR);
   Serial.println (val);
-  if (val >= 700) {
+  if (val > 150) {
     Serial.println ("LET THE CARNAGE COMMENCE");
-    delay(3000);
+    delay(1000);
     launcher.write (180);
     delay (1000);
     launcher.write (0);
